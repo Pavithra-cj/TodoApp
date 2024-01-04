@@ -7,7 +7,7 @@ import {
 	View,
 } from "react-native";
 import React, { useState } from "react";
-import { IconButton } from "react-native-paper";
+import { IconButton, Keyboard } from "react-native-paper";
 import Fallback from "../components/Fallback";
 
 console.log(Date.now().toString());
@@ -21,6 +21,7 @@ const TodoScreen = () => {
 	// Handle Add Todo
 	const handleAddTodo = () => {
 
+        Keyboard.dismiss();
 		if (todo === "") {
 			return; // early return
 		}
@@ -37,14 +38,13 @@ const TodoScreen = () => {
 	};
 
 	// Handle Edit todo
-
 	const handleEditTodo = (todo) => {
+        Keyboard.dismiss();
 		setEditedTodo(todo);
 		setTodo(todo.title);
 	};
 
 	// Handle Update
-
 	const handleUpdateTodo = () => {
 		const updatedTodos = todoList.map((item) => {
 			if (item.id === editedTodo.id) {
@@ -98,6 +98,7 @@ const TodoScreen = () => {
 	};
 	return (
 		<View style={{ marginHorizontal: 16, marginTop: 40 }}>
+        <Text style={{fontSize: 24, fontWeight: 'bold', justifyContent: 'space-around',}}>Today's tasks</Text>
 			<TextInput
 				style={{
 					borderWidth: 2,
